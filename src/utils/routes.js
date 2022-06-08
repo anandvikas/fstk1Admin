@@ -14,6 +14,8 @@ import ViewUser from "../components/user/viewUser/view";
 
 import FormUseForm from "../components/tests/formUseForm";
 
+import ImgUpload from "../components/img/imgUpload";
+
 export const NonPrivateRoutes = [
   // { path: "/signup", component: SignUp },
   { path: "/", component: Login },
@@ -31,4 +33,5 @@ export const Privateroutes = [
   { path: "/user/edit/:id", component: EditUser },
   { path: "/user/:id", component: ViewUser },
   { path: "/test", component: FormUseForm },
+  { path: "/image", component: ImgUpload },
 ];
