@@ -15,15 +15,30 @@ const AddFoodUseForm = () => {
   };
   // --------------------------------------------------------------------------------------
   const makePostBody = (data) => {
-    return {
-      name: data.name,
-      price: parseInt(data.price),
-      ingredients: data.ingredients.split(",").map((ele) => {
-        return ele.trim();
-      }),
-      catagory: data.catagory,
-      isVeg: data.isVeg,
-    };
+    console.log(data.img[0])
+    const formData = new FormData();
+    formData.append("name", data.name)
+    formData.append("price", data.price)
+    let ingridients = data.ingredients.split(",").map((ele) => {
+      return ele.trim();
+    })
+    console.log(ingridients)
+    formData.append("ingredients", JSON.stringify(ingridients))
+    formData.append("catagory", data.catagory)
+    formData.append("isVeg", data.isVeg)
+    formData.append("img", data.img[0])
+
+    return formData
+
+    // return {
+    //   name: data.name,
+    //   price: parseInt(data.price),
+    //   ingredients: data.ingredients.split(",").map((ele) => {
+    //     return ele.trim();
+    //   }),
+    //   catagory: data.catagory,
+    //   isVeg: data.isVeg,
+    // };
   };
   // --------------------------------------------------------------------------------------
   const onFormSubmit = (data) => {
@@ -45,7 +60,7 @@ const AddFoodUseForm = () => {
   // --------------------------------------------------------------------------------------
   return (
     <div>
-      <form onSubmit={handleSubmit(onFormSubmit)}>
+      <form onSubmit={handleSubmit(onFormSubmit)} encType="multipart/form-data">
         <div>
           <input type="text" placeholder="Item Name" {...register("name")} />
           <br />
@@ -69,6 +84,9 @@ const AddFoodUseForm = () => {
         <div>
           Is Veg : <input type="checkbox" {...register("isVeg")} />
           <hr />
+        </div>
+        <div>
+        <input type="file" name="img" {...register("img")} />
         </div>
         <div>
           <input type="submit" value="submit form" />

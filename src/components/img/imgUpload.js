@@ -6,7 +6,7 @@ const ImgUpload = () => {
   const [img, setImg] = useState("");
 
   const handleChange = (e) => {
-    console.log(e);
+    console.log(e.target.files[0]);
     setImg(e.target.files[0]);
   };
   const submitForm = (e) => {
